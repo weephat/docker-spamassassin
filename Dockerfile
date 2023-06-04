@@ -1,5 +1,6 @@
 ARG DISTRO=alpine
 ARG DISTRO_VARIANT=3.18
+ARG SPAMASSASSIN_VERSION=3.4.4
 
 FROM docker.io/tiredofit/${DISTRO}:${DISTRO_VARIANT}
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
@@ -15,7 +16,7 @@ RUN source /assets/functions/00-container && \
     package upgrade && \
     package install  .spamassassin-run-deps \
            razor \
-           spamassassin \
+           spamassassin=${SPAMASSASSIN_VERSION} \
            && \
    \
     mkdir -p /assets/spamassassin && \
